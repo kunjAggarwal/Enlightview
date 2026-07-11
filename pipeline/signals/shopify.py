@@ -12,7 +12,9 @@ class ShopifySignal(BaseSignal):
     @retry_with_backoff()
     def fetch(self, brand: dict) -> dict:
         url = f"https://{brand['shopify_domain']}/products.json"
-        response = httpx.get(url, timeout=15, headers={"User-Agent": "EnlightView/1.0"})
+        response = httpx.get(url, timeout=15, headers={
+    "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+})
         response.raise_for_status()
         return response.json()
 
