@@ -1,4 +1,5 @@
 import sys
+import time
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
@@ -24,6 +25,7 @@ if __name__ == "__main__":
         except Exception as e:
             print(f"FAILED (Google Trends) for {brand['name']}: {e}")
         print()
+        time.sleep(20)
 
     print("Daily pipeline run complete.")
     
