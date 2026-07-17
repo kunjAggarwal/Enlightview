@@ -1,0 +1,72 @@
+Running Shopify signal for 2 active brand(s)...
+
+Running Shopify signal for Sugar Cosmetics...
+  30 products total, 0 new, baseline=0.0, velocity=0.00
+  No active signal yet (either below threshold, or no baseline established).
+
+Running Shopify signal for boAt...
+  30 products total, 0 new, baseline=0.0, velocity=0.00
+  No active signal yet (either below threshold, or no baseline established).
+
+Pipeline run complete.
+Traceback (most recent call last):
+  File "/Users/kunjaggarwal/Desktop/enlightview/pipeline/venv/lib/python3.11/site-packages/httpx/_transports/default.py", line 69, in map_httpcore_exceptions
+    yield
+  File "/Users/kunjaggarwal/Desktop/enlightview/pipeline/venv/lib/python3.11/site-packages/httpx/_transports/default.py", line 233, in handle_request
+    resp = self._pool.handle_request(req)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/kunjaggarwal/Desktop/enlightview/pipeline/venv/lib/python3.11/site-packages/httpcore/_sync/connection_pool.py", line 256, in handle_request
+    raise exc from None
+  File "/Users/kunjaggarwal/Desktop/enlightview/pipeline/venv/lib/python3.11/site-packages/httpcore/_sync/connection_pool.py", line 236, in handle_request
+    response = connection.handle_request(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/kunjaggarwal/Desktop/enlightview/pipeline/venv/lib/python3.11/site-packages/httpcore/_sync/connection.py", line 101, in handle_request
+    raise exc
+  File "/Users/kunjaggarwal/Desktop/enlightview/pipeline/venv/lib/python3.11/site-packages/httpcore/_sync/connection.py", line 78, in handle_request
+    stream = self._connect(request)
+             ^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/kunjaggarwal/Desktop/enlightview/pipeline/venv/lib/python3.11/site-packages/httpcore/_sync/connection.py", line 124, in _connect
+    stream = self._network_backend.connect_tcp(**kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/kunjaggarwal/Desktop/enlightview/pipeline/venv/lib/python3.11/site-packages/httpcore/_backends/sync.py", line 207, in connect_tcp
+    with map_exceptions(exc_map):
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/contextlib.py", line 158, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "/Users/kunjaggarwal/Desktop/enlightview/pipeline/venv/lib/python3.11/site-packages/httpcore/_exceptions.py", line 14, in map_exceptions
+    raise to_exc(exc) from exc
+httpcore.ConnectError: [Errno 8] nodename nor servname provided, or not known
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/kunjaggarwal/Desktop/enlightview/pipeline/main.py", line 17, in <module>
+    brands = get_active_brands()
+             ^^^^^^^^^^^^^^^^^^^
+  File "/Users/kunjaggarwal/Desktop/enlightview/pipeline/main.py", line 12, in get_active_brands
+    result = client.table("brands").select("*").eq("status", "active").execute()
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/kunjaggarwal/Desktop/enlightview/pipeline/venv/lib/python3.11/site-packages/postgrest/_sync/request_builder.py", line 58, in execute
+    r = self.session.request(
+        ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/kunjaggarwal/Desktop/enlightview/pipeline/venv/lib/python3.11/site-packages/httpx/_client.py", line 827, in request
+    return self.send(request, auth=auth, follow_redirects=follow_redirects)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/kunjaggarwal/Desktop/enlightview/pipeline/venv/lib/python3.11/site-packages/httpx/_client.py", line 914, in send
+    response = self._send_handling_auth(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/kunjaggarwal/Desktop/enlightview/pipeline/venv/lib/python3.11/site-packages/httpx/_client.py", line 942, in _send_handling_auth
+    response = self._send_handling_redirects(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/kunjaggarwal/Desktop/enlightview/pipeline/venv/lib/python3.11/site-packages/httpx/_client.py", line 979, in _send_handling_redirects
+    response = self._send_single_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/kunjaggarwal/Desktop/enlightview/pipeline/venv/lib/python3.11/site-packages/httpx/_client.py", line 1015, in _send_single_request
+    response = transport.handle_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/kunjaggarwal/Desktop/enlightview/pipeline/venv/lib/python3.11/site-packages/httpx/_transports/default.py", line 232, in handle_request
+    with map_httpcore_exceptions():
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/contextlib.py", line 158, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "/Users/kunjaggarwal/Desktop/enlightview/pipeline/venv/lib/python3.11/site-packages/httpx/_transports/default.py", line 86, in map_httpcore_exceptions
+    raise mapped_exc(message) from exc
+httpx.ConnectError: [Errno 8] nodename nor servname provided, or not known
